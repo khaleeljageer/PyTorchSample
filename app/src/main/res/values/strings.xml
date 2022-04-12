@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PyTorchSample</string>
+    <string name="image">Image</string>
+</resources>
