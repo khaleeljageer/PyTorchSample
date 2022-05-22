@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         // preparing input tensor
-
-        // preparing input tensor
         val inputTensor = TensorImageUtils.bitmapToFloat32Tensor(
             bitmap,
             TensorImageUtils.TORCHVISION_NORM_MEAN_RGB,
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val className = ImageNetClasses.IMAGENET_CLASSES1[maxScoreIdx]
+        val className = ImageNetClasses.IMAGENET_CLASSES[maxScoreIdx]
         binding.image.setImageBitmap(bitmap)
         binding.text.text = className
     }
@@ -88,11 +86,11 @@ class MainActivity : AppCompatActivity() {
         if (file.exists() && file.length() > 0) {
             return file.absolutePath
         }
-        context.assets.open(assetName!!).use { `is` ->
+        context.assets.open(assetName!!).use { item ->
             FileOutputStream(file).use { os ->
                 val buffer = ByteArray(4 * 1024)
                 var read: Int
-                while (`is`.read(buffer).also { read = it } != -1) {
+                while (item.read(buffer).also { read = it } != -1) {
                     os.write(buffer, 0, read)
                 }
                 os.flush()
